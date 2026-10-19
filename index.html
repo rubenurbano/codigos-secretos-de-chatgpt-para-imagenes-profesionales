@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Códigos Secretos de ChatGPT para Imágenes Profesionales — V001</title>
+  <style>
+    :root {
+      --bg-main: #0a0e1a;
+      --bg-card: #0f172a;
+      --bg-highlight: #1e3a5f;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --border: #1e293b;
+      --code-bg: #050811;
+      --font-size-base: 16px;
+      --radius: 12px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    html[data-theme="light"] {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-highlight: #e0f2fe;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --border: #cbd5e1;
+      --code-bg: #f1f5f9;
+      --shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: var(--font-size-base);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Barra de progreso de lectura */
+    #reading-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      z-index: 9999;
+    }
+
+    #reading-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--success));
+      transition: width 0.15s ease-out;
+    }
+
+    /* Cabecera y controles superiores */
+    .top-header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      position: sticky;
+      top: 4px;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .brand-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-badge {
+      background: var(--bg-highlight);
+      color: var(--text-main);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+    }
+
+    .toolbar-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1 1 220px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.5rem 2.2rem 0.5rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .search-input:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 0.4rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.2rem 0.4rem;
+      display: none;
+    }
+
+    .btn-tool {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-tool:hover, .btn-tool:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    /* Pestañas de navegación */
+    .tabs-nav {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.35rem;
+      padding-bottom: 0.25rem;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      padding: 0.55rem 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background-color: var(--bg-main);
+    }
+
+    .tab-btn.active {
+      background-color: var(--bg-highlight);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Banner de resultados de búsqueda */
+    #search-status-banner {
+      display: none;
+      background-color: var(--bg-highlight);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Contenedor principal */
+    main {
+      max-width: 1200px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1rem 3rem;
+      flex: 1;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tipografía y estructura de tarjetas */
+    h1 {
+      font-size: 1.85rem;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      color: var(--accent);
+      margin: 1.5rem 0 0.85rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      margin: 1.15rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-highlight {
+      background-color: var(--bg-highlight);
+      border: 1px solid var(--accent);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Ilustración SVG compartida */
+    .svg-showcase-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .svg-mount-target {
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 220px;
+    }
+
+    .svg-mount-target svg,
+    .svg-mount-target img {
+      width: 100%;
+      height: auto;
+      max-height: 260px;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .svg-controls-row {
+      margin-top: 0.65rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .svg-caption {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Animaciones CSS para el SVG compartido */
+    @keyframes floatSubject {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes orbitPlanet {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulseLens {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 1; }
+    }
+
+    .svg-anim-float {
+      animation: floatSubject 3.6s ease-in-out infinite;
+    }
+    .svg-anim-orbit {
+      transform-origin: 300px 130px;
+      animation: orbitPlanet 18s linear infinite;
+    }
+    .svg-anim-pulse {
+      animation: pulseLens 2.8s ease-in-out infinite;
+    }
+
+    .svg-paused .svg-anim-float,
+    .svg-paused .svg-anim-orbit,
+    .svg-paused .svg-anim-pulse {
+      animation-play-state: paused !important;
+    }
+
+    /* Bloques de código y prompts copiables */
+    .copy-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 0.85rem 0;
+      overflow: hidden;
+    }
+
+    .copy-block-header {
+      background-color: rgba(56, 189, 248, 0.1);
+      padding: 0.45rem 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .btn-copy {
+      background-color: var(--bg-highlight);
+      color: var(--text-main);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy:hover {
+      background-color: var(--accent);
+      color: #0a0e1a;
+    }
+
+    .btn-copy.copied {
+      background-color: var(--success);
+      border-color: var(--success);
+      color: #ffffff;
+    }
+
+    .copy-content {
+      padding: 0.9rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    /* Etiquetas de ejemplos correcto / incorrecto */
+    .example-box {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      margin: 0.65rem 0;
+      border-left: 4px solid;
+    }
+
+    .example-ok {
+      background-color: rgba(34, 197, 94, 0.1);
+      border-left-color: var(--success);
+    }
+
+    .example-bad {
+      background-color: rgba(239, 68, 68, 0.1);
+      border-left-color: var(--danger);
+    }
+
+    .badge-tag {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 0.4rem;
+      margin-bottom: 0.35rem;
+      background-color: var(--bg-highlight);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    /* Pasos de procedimiento */
+    .step-list {
+      list-style: none;
+      counter-reset: step-counter;
+      margin: 1rem 0;
+    }
+
+    .step-item {
+      position: relative;
+      padding: 1rem 1rem 1rem 3.2rem;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.85rem;
+    }
+
+    .step-item::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0.85rem;
+      top: 1rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      background-color: var(--accent);
+      color: #0a0e1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .step-reason {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      padding-left: 0.6rem;
+      border-left: 2px solid var(--accent);
+    }
+
+    /* Listas de comprobación interactivas */
+    .checklist-group {
+      list-style: none;
+      margin: 0.75rem 0;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .checklist-item:hover {
+      border-color: var(--accent);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: 0.2rem;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checklist-item.checked span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* Tarjetas desplegables (details / summary) */
+    details.collapsible-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+    }
+
+    details.collapsible-card summary {
+      padding: 1rem 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      background-color: rgba(30, 58, 95, 0.35);
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+    }
+
+    details.collapsible-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.collapsible-card summary::after {
+      content: "▼";
+      font-size: 0.8rem;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    details.collapsible-card[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .collapsible-body {
+      padding: 1.15rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Tablas adaptables */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background-color: var(--bg-highlight);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Diagramas visuales de flujo */
+    .flow-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin: 1.1rem 0;
+      padding: 1rem;
+      background-color: var(--bg-main);
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+    }
+
+    .flow-node {
+      background-color: var(--bg-highlight);
+      border: 1px solid var(--accent);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-align: center;
+      flex: 1 1 160px;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    /* Sección CRÉDITOS */
+    .credits-author-name {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--accent);
+      text-align: center;
+      margin: 0.85rem 0 0.2rem;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+
+    .credits-author-role {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Botón flotante para volver arriba */
+    #btn-back-to-top {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background-color: var(--accent);
+      color: #0a0e1a;
+      border: none;
+      border-radius: 999px;
+      padding: 0.65rem 1rem;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 950;
+    }
+
+    /* Modal / Alerta para copia manual o aviso de impresión */
+    #notification-banner {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      max-width: 420px;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent);
+      color: var(--text-main);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 9999;
+    }
+
+    /* Resaltado de búsqueda */
+    .search-match-card {
+      outline: 2px solid var(--warning);
+    }
+
+    /* Hoja de estilos de IMPRESIÓN / PDF A4 */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 14mm 12mm 14mm 12mm;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt !important;
+        line-height: 1.45 !important;
+      }
+
+      .top-header,
+      #reading-progress-container,
+      #btn-back-to-top,
+      #notification-banner,
+      .svg-controls-row,
+      .btn-copy,
+      #search-status-banner {
+        display: none !important;
+      }
+
+      main {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .tab-panel {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        margin-bottom: 16pt !important;
+        border-bottom: 2px solid #000000;
+        padding-bottom: 12pt;
+      }
+
+      .card,
+      .card-highlight,
+      .svg-showcase-box,
+      .step-item,
+      .checklist-item,
+      details.collapsible-card,
+      .copy-block,
+      .flow-diagram,
+      .flow-node {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #444444 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+
+      h1, h2, h3, .credits-author-name, .credits-author-role, th {
+        color: #000000 !important;
+      }
+
+      .copy-content {
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
+        color: #000000 !important;
+        background: #f8f8f8 !important;
+      }
+
+      .table-responsive {
+        overflow: visible !important;
+      }
+
+      table {
+        min-width: 100% !important;
+        border: 1px solid #000000 !important;
+      }
+
+      th, td {
+        border: 1px solid #444444 !important;
+        color: #000000 !important;
+        background: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fuente SVG única oculta (será extraída a plantilla JS y eliminada del DOM al iniciar) -->
+  <div id="svg-master-template-holder" style="display:none;" aria-hidden="true">
+    <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de lente fotográfico IA aplicando códigos secretos de perspectiva y gravedad en ChatGPT">
+      <defs>
+        <linearGradient id="__PREFIX__bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0a0e1a"/>
+          <stop offset="50%" stop-color="#1e3a5f"/>
+          <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+        <linearGradient id="__PREFIX__accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#38bdf8"/>
+          <stop offset="100%" stop-color="#22c55e"/>
+        </linearGradient>
+        <radialGradient id="__PREFIX__lensGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Fondo del lienzo -->
+      <rect width="600" height="240" rx="14" fill="url(#__PREFIX__bgGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+
+      <!-- Cuadrícula de perspectiva -->
+      <g stroke="#38bdf8" stroke-opacity="0.2" stroke-width="1">
+        <line x1="0" y1="60" x2="600" y2="60"/>
+        <line x1="0" y1="120" x2="600" y2="120"/>
+        <line x1="0" y1="180" x2="600" y2="180"/>
+        <line x1="150" y1="0" x2="150" y2="240"/>
+        <line x1="300" y1="0" x2="300" y2="240"/>
+        <line x1="450" y1="0" x2="450" y2="240"/>
+      </g>
+
+      <!-- Resplandor central -->
+      <circle cx="300" cy="120" r="95" fill="url(#__PREFIX__lensGlow)" class="svg-anim-pulse"/>
+
+      <!-- Anillo orbital /tinyplanet 360 -->
+      <g class="svg-anim-orbit">
+        <circle cx="300" cy="120" r="78" fill="none" stroke="url(#__PREFIX__accentGrad)" stroke-width="2.5" stroke-dasharray="10 6"/>
+        <circle cx="300" cy="42" r="6" fill="#38bdf8"/>
+        <circle cx="300" cy="198" r="6" fill="#22c55e"/>
+      </g>
+
+      <!-- Lente central ojo de pez / cámara -->
+      <circle cx="300" cy="120" r="56" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+      <circle cx="300" cy="120" r="44" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <!-- Sujeto estilizado flotando (/gravityshift) + Silueta urbana (/doubleexposure) -->
+      <g class="svg-anim-float">
+        <!-- Edificios de doble exposición en la base de la lente -->
+        <rect x="268" y="132" width="12" height="24" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1"/>
+        <rect x="283" y="122" width="15" height="34" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1"/>
+        <rect x="301" y="127" width="14" height="29" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1"/>
+        <rect x="318" y="136" width="12" height="20" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1"/>
+        <!-- Figura humana en ingravidez -->
+        <circle cx="300" cy="92" r="11" fill="#38bdf8"/>
+        <path d="M282 118 C282 106, 318 106, 318 118" fill="none" stroke="#e2e8f0" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- Partículas en suspensión -->
+        <circle cx="272" cy="88" r="3" fill="#22c55e"/>
+        <circle cx="328" cy="95" r="3.5" fill="#38bdf8"/>
+        <circle cx="278" cy="108" r="2.5" fill="#e2e8f0"/>
+      </g>
+
+      <!-- Etiquetas flotantes de comandos a izquierda y derecha -->
+      <g font-family="monospace" font-size="12" font-weight="bold">
+        <rect x="24" y="34" width="145" height="28" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="36" y="52" fill="#38bdf8">/gravityshift</text>
+
+        <rect x="24" y="106" width="145" height="28" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="36" y="124" fill="#22c55e">/doubleexposure</text>
+
+        <rect x="24" y="176" width="145" height="28" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="36" y="194" fill="#e2e8f0">/tinyplanet 360°</text>
+
+        <rect x="430" y="34" width="146" height="28" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="444" y="52" fill="#38bdf8">/worldfiew</text>
+
+        <rect x="430" y="106" width="146" height="28" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="444" y="124" fill="#22c55e">/versaiview</text>
+
+        <rect x="430" y="176" width="146" height="28" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="444" y="194" fill="#e2e8f0">MiniMax H3 Video</text>
+      </g>
+
+      <!-- Líneas conectoras -->
+      <g stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 3">
+        <line x1="169" y1="48" x2="248" y2="88"/>
+        <line x1="169" y1="120" x2="244" y2="120"/>
+        <line x1="169" y1="190" x2="248" y2="152"/>
+        <line x1="430" y1="48" x2="352" y2="88"/>
+        <line x1="430" y1="120" x2="356" y2="120"/>
+        <line x1="430" y1="190" x2="352" y2="152"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Barra de progreso de lectura -->
+  <div id="reading-progress-container" aria-hidden="true">
+    <div id="reading-progress-bar"></div>
+  </div>
+
+  <!-- Cabecera fija con buscador, herramientas y pestañas -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">
+          <span>📷 Códigos Secretos ChatGPT: Imágenes Pro</span>
+          <span class="brand-badge">V001</span>
+        </div>
+
+        <div class="toolbar-controls">
+          <div class="search-wrapper">
+            <input type="search" id="global-search-input" class="search-input" placeholder="Buscar código, ciudad o concepto..." aria-label="Buscar en el tutorial">
+            <button type="button" id="search-clear-btn" class="search-clear-btn" title="Limpiar búsqueda" aria-label="Limpiar búsqueda">✕</button>
+          </div>
+          <button type="button" id="btn-font-dec" class="btn-tool" title="Reducir tamaño de letra" aria-label="Reducir tamaño de letra">A−</button>
+          <button type="button" id="btn-font-inc" class="btn-tool" title="Aumentar tamaño de letra" aria-label="Aumentar tamaño de letra">A+</button>
+          <button type="button" id="btn-theme-toggle" class="btn-tool" title="Cambiar entre tema oscuro y claro" aria-label="Cambiar tema">☀️/🌙</button>
+          <button type="button" id="btn-print-pdf" class="btn-tool" title="Imprimir o guardar como PDF A4" aria-label="Imprimir o guardar como PDF">🖨️ PDF</button>
+        </div>
+      </div>
+
+      <!-- Navegación de las 8 pestañas obligatorias -->
+      <nav class="tabs-nav" role="tablist" aria-label="Secciones del tutorial">
+        <button type="button" class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-inicio" data-tab="inicio">INICIO</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-conceptos" data-tab="conceptos">CONCEPTOS</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-procedimiento" data-tab="procedimiento">PROCEDIMIENTO</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-practica" data-tab="practica">PRÁCTICA</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-errores" data-tab="errores">ERRORES</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-resumen" data-tab="resumen">RESUMEN</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-fuentes" data-tab="fuentes">FUENTES</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-creditos" data-tab="creditos">CRÉDITOS</button>
+      </nav>
+
+      <!-- Estado del buscador interno -->
+      <div id="search-status-banner" role="status" aria-live="polite">
+        <span id="search-status-text">Resultados encontrados.</span>
+        <button type="button" id="btn-exit-search" class="btn-tool">Cerrar búsqueda y restaurar pestañas</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================
+         PESTAÑA 1: INICIO
+         ========================================== -->
+    <section id="panel-inicio" class="tab-panel active" role="tabpanel" data-tab-panel="inicio">
+      <!-- Contenedor SVG animado compartido (Instancia 1: INICIO) -->
+      <div class="svg-showcase-box">
+        <div id="svg-mount-inicio" class="svg-mount-target" role="region" aria-label="Ilustración animada de los códigos secretos de fotografía en ChatGPT mostrando ingravidez, doble exposición urbana y horizonte 360 grados"></div>
+        <div class="svg-controls-row">
+          <button type="button" class="btn-tool btn-toggle-svg-anim" data-target="svg-mount-inicio">⏸️ Pausar / Reanudar animación</button>
+        </div>
+        <p class="svg-caption">Esquema interactivo: Transformación de una fotografía base («Fotingui») mediante códigos secretos de barra inclinada (<code>/</code>) en ChatGPT y animación posterior con MiniMax H3.</p>
+      </div>
+
+      <div class="card card-highlight">
+        <h1>Códigos Secretos de ChatGPT para Imágenes Profesionales</h1>
+        <p><strong>Por Rubén Sbarsky</strong> — Guía práctica paso a paso diseñada para personas sin conocimientos técnicos previos que desean transformar fotografías cotidianas o selfies en composiciones de nivel profesional y vídeos animados.</p>
+      </div>
+
+      <div class="card">
+        <h2>1. ¿Qué son los Códigos Secretos de ChatGPT y para qué sirven?</h2>
+        <p>Los <strong>códigos secretos de ChatGPT</strong> son comandos cortos precedidos por una barra inclinada (como <code>/gravityshift</code> o <code>/tinyplanet</code>) que actúan como disparadores de estilo dentro de ChatGPT. Sirven para indicarle a la inteligencia artificial de forma directa qué efecto visual, ángulo de cámara o composición fotográfica debe aplicar sobre una imagen previa que le hayas enviado.</p>
+        <p>En lugar de escribir párrafos largos intentando describir un encuadre técnico, estos códigos resumen complejas instrucciones de edición fotográfica en una sola palabra clave.</p>
+        <div class="example-box example-ok">
+          <strong>💡 Analogía cotidiana:</strong> Imagina los botones de filtro de tu teléfono móvil o los modos de escena de una cámara digital (Modo Retrato, Modo Noche). Los códigos secretos son el equivalente a pulsar un botón preestablecido dentro de ChatGPT, pero con la potencia de la generación de imágenes por IA.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2>2. ¿Por qué importa dominar esta técnica?</h2>
+          <ul style="padding-left: 1.2rem;">
+            <li style="margin-bottom:0.5rem;"><strong>Ahorro económico drástico:</strong> Permite obtener fotografías de apariencia profesional sin necesidad de comprar cámaras réflex, lentes de ojo de pez, drones o cámaras de 360 grados cuyo coste supera miles de euros.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Sin curva de aprendizaje compleja:</strong> Evita el software de edición tradicional (como Adobe Photoshop) que requiere cientos de horas de formación técnica.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Agilidad en la creación de contenido:</strong> Cualquier creador, estudiante o profesional puede generar imágenes impactantes en menos de 30 segundos directamente desde su teléfono inteligente.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>3. ¿En qué situaciones reales se utiliza?</h2>
+          <ul style="padding-left: 1.2rem;">
+            <li style="margin-bottom:0.5rem;"><strong>Redes Sociales y Marca Personal:</strong> Creación de fotos de perfil llamativas o portadas para perfiles profesionales.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Publicidad y Marketing Digital:</strong> Diseños publicitarios surrealistas o urbanos para captar la atención en feeds saturados.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Contenido de Viajes y Estilo de Vida:</strong> Creación de perspectivas panorámicas o efectos de pequeño planeta durante desplazamientos o vacaciones.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Proyectos Creativos y Storytelling:</strong> Ilustración de conceptos artísticos, portadas de libros o maquetas conceptuales.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>4. Decisiones Metodológicas y Alcance del Tutorial</h2>
+        <p>Para garantizar la máxima claridad, utilidad práctica y rigor metodológico, este tutorial interactivo incorpora íntegramente:</p>
+        <ol style="padding-left: 1.3rem;">
+          <li><strong>Estructura Pedagógica Progresiva:</strong> Desde la preparación de tu fotografía base («Fotingui») e interfaz básica hasta la animación avanzada con inteligencia artificial en <code>Magnific.com</code>.</li>
+          <li><strong>Uso de Términos Claros en Castellano:</strong> Traducción y contextualización de términos técnicos fotográficos (como <em>worm's-eye view</em> a «vista de gusano» y <em>bird's-eye view</em> a «vista de pájaro») manteniendo la terminología original en inglés entre paréntesis.</li>
+          <li><strong>Inclusión Íntegra de Códigos y Prompts:</strong> Los 10 códigos secretos, los 10 prompts detallados, los 3 ejemplos listos para usar y los 20 ejercicios prácticos con solución explicada derivados de la fuente documental (canal <code>maxmaxdata</code>).</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 2: CONCEPTOS
+         ========================================== -->
+    <section id="panel-conceptos" class="tab-panel" role="tabpanel" data-tab-panel="conceptos">
+      <div class="card">
+        <h1>Catálogo de los 10 Códigos Secretos y Glosario Técnico</h1>
+        <p>Antes de ejecutar el procedimiento paso a paso, familiarízate con los conceptos esenciales y explora cómo funciona cada uno de los <strong>10 códigos secretos</strong> clasificados en 4 categorías visuales.</p>
+      </div>
+
+      <!-- Categoría A -->
+      <div class="card">
+        <h2>Categoría A: Efectos Surrealistas y Artísticos (Códigos 1 a 3)</h2>
+
+        <h3>1. Código <code>/gravityshift</code> (Efecto Flotante / Ausencia de Gravedad)</h3>
+        <p><span class="badge-tag">Surrealista</span><span class="badge-tag">Fantasía / Ingravidez</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Simula la ausencia de gravedad en la escena, haciendo que tanto la persona como los objetos a su alrededor aparezcan suspendidos en el aire.</p>
+        <p><strong>Situación real de uso:</strong> Ideal para imágenes de perfil de impacto, portadas conceptuales o fotos de fondo de pantalla para teléfonos inteligentes.</p>
+        <p><strong>El motivo de cada acción:</strong> Adjuntar tu foto y usar <code>/gravityshift</code> le indica a la IA que tome los rasgos del cuerpo y los reubique flotando en el espacio manteniendo la física del entorno.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /gravityshift</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-1">COPIAR</button>
+          </div>
+          <pre id="prompt-code-1" class="copy-content">(Adjuntas tu foto) /gravityshift. Genera un efecto de ausencia de gravedad en la imagen, haciendo que mi cuerpo y los objetos alrededor aparezcan flotando suspendidos en el aire.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Apareces flotando suavemente en medio de tu salón con libros y tazas de café suspendidos alrededor.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Pedir el efecto sobre una foto de primer plano donde solo se ve un ojo, impidiendo a la IA mostrar el cuerpo flotando.</div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>2. Código <code>/astralprojection</code> (Proyección Astral)</h3>
+        <p><span class="badge-tag">Surrealista</span><span class="badge-tag">Misticismo / Espiritualidad</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Genera una composición surrealista donde el sujeto aparece duplicado: por un lado acostado/recostado y por otro flotando en el aire, simulando la separación del cuerpo y el alma.</p>
+        <p><strong>Situación real de uso:</strong> Fotografía artística, portadas de música, ilustración de temas de meditación, descanso o filosofía.</p>
+        <p><strong>El motivo de cada acción:</strong> Duplica la figura humana en dos estados distintos (físico y etéreo) en una sola imagen.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /astralprojection</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-2">COPIAR</button>
+          </div>
+          <pre id="prompt-code-2" class="copy-content">(Adjuntas tu foto) /astralprojection. Crea una composición surrealista en la que aparezca recostado por un lado y flotando en el aire por el otro, simulando una proyección astral.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Tu figura aparece tumbada en un banco de parque mientras una versión translúcida de ti flota hacia el cielo.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Intentar usar este código con una foto donde hay 10 personas juntas en un grupo.</div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>3. Código <code>/doubleexposure</code> (Doble Exposición Urbana)</h3>
+        <p><span class="badge-tag">Artística</span><span class="badge-tag">Elegancia / Cinematográfico</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Fusiona dos capas visuales: en la parte superior muestra el contorno del rostro/busto a gran escala y en la parte inferior una escena caminable reducida.</p>
+        <p><strong>Truco de experto:</strong> Se puede personalizar la ubicación exacta escribiendo <code>/doubleexposure in [Ciudad]</code> (por ejemplo <code>/doubleexposure in Bilbao</code> o <code>/doubleexposure in Madrid</code>).</p>
+        <p><strong>Situación real de uso:</strong> Afiches de cine, fotos de viajes elegantes, marcas personales y publicaciones urbanas.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /doubleexposure in Madrid</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-3">COPIAR</button>
+          </div>
+          <pre id="prompt-code-3" class="copy-content">(Adjuntas tu foto) /doubleexposure in Madrid. Aplica un efecto de doble exposición combinando en la parte superior el contorno de mi rostro y en la parte inferior mi figura caminando entre las calles de Madrid.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> En la zona superior se observa la silueta de tu cara y en la base apareces caminando por la Gran Vía de Madrid o junto al Museo Guggenheim de Bilbao.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Escribir <code>/doubleexposure</code> sin especificar si quieres una ciudad o un entorno, dejando que la IA elija un fondo genérico sin personalidad.</div>
+      </div>
+
+      <!-- Categoría B -->
+      <div class="card">
+        <h2>Categoría B: Perspectivas y Encuadres Especiales (Códigos 4 a 6)</h2>
+
+        <h3>4. Código <code>/tinyplanet</code> (Efecto Planeta 360°)</h3>
+        <p><span class="badge-tag">Perspectiva</span><span class="badge-tag">Aventura / Globalidad</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Deforma el horizonte y el entorno de la fotografía convirtiéndolo en una esfera o pequeño planeta circular, emulando las cámaras de 360 grados tipo Insta360.</p>
+        <p><strong>Situación real de uso:</strong> Recuerdos de viajes, paisajes montañosos, plazas de ciudades o playas.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /tinyplanet</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-4">COPIAR</button>
+          </div>
+          <pre id="prompt-code-4" class="copy-content">(Adjuntas tu foto) /tinyplanet. Transforma el entorno de mi fotografía en un pequeño planeta circular en perspectiva panorámica, simulando una cámara 360°.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Estás de pie en la cumbre de una montaña y el paisaje terrestre se curva formando un globo completo bajo tus pies.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Aplicar el código a una foto tomada en un pasillo estrecho sin horizonte visible.</div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>5. Código <code>/giantworld</code> (Efecto Gigante / Escala)</h3>
+        <p><span class="badge-tag">Escala</span><span class="badge-tag">Poder / Épica</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Altera drásticamente la escala del sujeto, mostrándolo como un gigante caminando entre edificios o paisajes en miniatura (estilo King Kong o película de ciencia ficción).</p>
+        <p><strong>Situación real de uso:</strong> Contenido humorístico, publicidad creativa o storytelling fantástico.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /giantworld</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-5">COPIAR</button>
+          </div>
+          <pre id="prompt-code-5" class="copy-content">(Adjuntas tu foto) /giantworld. Muestra mi figura a escala gigante caminando en medio de una ciudad en miniatura.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Tu figura sobresale por encima de los rascacielos de una ciudad mientras caminas entre las calles.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Usar una foto donde no haya elementos de referencia de escala (como edificios o árboles) para que se aprecie la diferencia de tamaño.</div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>6. Código <code>/fisheye</code> (Lente Ojo de Pez)</h3>
+        <p><span class="badge-tag">Lente</span><span class="badge-tag">Dinamismo / Estilo Urbano</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Recrea la distorsión esférica característica de los lentes fotográficos Ultra Gran Angular de ojo de pez, como si la imagen se observara a través de la mirilla de una puerta.</p>
+        <p><strong>Situación real de uso:</strong> Fotografía urbana de estilo <em>skater</em>, retratos dinámicos y estética de los años 90.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /fisheye</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-6">COPIAR</button>
+          </div>
+          <pre id="prompt-code-6" class="copy-content">(Adjuntas tu foto) /fisheye. Recrea la imagen aplicando la distorsión curva redonda de un lente de ojo de pez, como si se mirara por una mirilla.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Tu rostro aparece en el centro ligeramente abombado con las esquinas del fondo curvadas hacia adentro en forma de marco esférico.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Exigir que las líneas del fondo permanezcan totalmente rectas al mismo tiempo que aplicas el lente de ojo de pez.</div>
+      </div>
+
+      <!-- Categoría C -->
+      <div class="card">
+        <h2>Categoría C: Ángulos de Cámara Extremos (Códigos 7 y 8)</h2>
+
+        <h3>7. Código <code>/worldfiew</code> (Vista de Gusano / Worm's-eye view)</h3>
+        <p><span class="badge-tag">Ángulo</span><span class="badge-tag">Grandeza / Imponencia</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Cambia la perspectiva colocándola a ras de suelo y apuntando hacia arriba.</p>
+        <p><strong>Glosario exprés:</strong> <em>Worm's-eye view</em> (Vista de gusano) significa enfocar la escena desde la posición de un gusano en la tierra mirando hacia el cielo.</p>
+        <p><strong>Situación real de uso:</strong> Dar majestuosidad a la figura humana, destacar la altura de rascacielos o monumentos.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /worldfiew</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-7">COPIAR</button>
+          </div>
+          <pre id="prompt-code-7" class="copy-content">(Adjuntas tu foto) /worldfiew. Cambia el encuadre a una vista de gusano (worm's-eye view), orientando la toma desde el nivel del suelo hacia arriba.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> La cámara parece estar sobre el asfalto y tu figura se proyecta alta e imponente contra el cielo.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Confundir este ángulo con una toma cenital desde el techo.</div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>8. Código <code>/versaiview</code> (Vista de Pájaro / Bird's-eye view)</h3>
+        <p><span class="badge-tag">Ángulo</span><span class="badge-tag">Visión Global / Geometría</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Reencuadra la escena desde una posición elevada en el aire inclinada hacia abajo, simulando una toma desde un dron o un edificio alto.</p>
+        <p><strong>Glosario exprés:</strong> <em>Bird's-eye view</em> (Vista de pájaro) representa la perspectiva aérea de un ave que vuela sobre la escena.</p>
+        <p><strong>Situación real de uso:</strong> Fotografía de eventos, patrones en el suelo, cruces peatonales o diseños geométricos en la calle.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /versaiview</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-8">COPIAR</button>
+          </div>
+          <pre id="prompt-code-8" class="copy-content">(Adjuntas tu foto) /versaiview. Reencuadra la fotografía a una vista de pájaro (bird's-eye view), capturando la escena desde el aire inclinada hacia abajo.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Se observa tu cabeza y hombros desde arriba mientras tus sombras se proyectan sobre el suelo.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Pedir que se vea el horizonte lejano cuando la toma es un picado cenital directo sobre el suelo.</div>
+      </div>
+
+      <!-- Categoría D -->
+      <div class="card">
+        <h2>Categoría D: Estilo Espontáneo y Texturas Visuales (Códigos 9 y 10)</h2>
+
+        <h3>9. Código <code>/rudorcracker</code> (Foto Entreabierta / Robado)</h3>
+        <p><span class="badge-tag">Textura</span><span class="badge-tag">Espontaneidad / Misterio</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Encuadra la toma a través del marco de una puerta entreabierta o rendija, imitando el estilo de una foto robada o espontánea tomada sin que el sujeto se dé cuenta.</p>
+        <p><strong>Situación real de uso:</strong> Fotografía narrativa, escenas íntimas de oficina o casa, retratos artísticos contemporáneos.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /rudorcracker</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-9">COPIAR</button>
+          </div>
+          <pre id="prompt-code-9" class="copy-content">(Adjuntas tu foto) /rudorcracker. Encuadra la escena a través del espacio de una puerta entreabierta, logrando el aspecto de una foto artística y espontánea.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> La imagen muestra los bordes oscuros de un marco de puerta a los lados y en el centro te ves trabajando o tomando café.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Tapar el 99% de la imagen con el marco de la puerta dejando al sujeto invisible.</div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>10. Código <code>/throughglass</code> (A través de la Ventana / Cristal)</h3>
+        <p><span class="badge-tag">Textura</span><span class="badge-tag">Intimidad / Melancolía</span></p>
+        <p><strong>Qué es y para qué sirve:</strong> Genera la escena como si la cámara estuviera fuera de una habitación fotografiando hacia el interior a través de un cristal, agregando sutiles reflejos de luz y gotas o texturas de ventana.</p>
+        <p><strong>Situación real de uso:</strong> Retratos melancólicos, estética de cafetería o días lluviosos en la ciudad.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT OFICIAL — /throughglass</span>
+            <button type="button" class="btn-copy" data-copy-target="prompt-code-10">COPIAR</button>
+          </div>
+          <pre id="prompt-code-10" class="copy-content">(Adjuntas tu foto) /throughglass. Genera la toma a través de un cristal o ventana, mostrando leves reflejos como si la foto se tomara desde el interior de una habitación.</pre>
+        </div>
+        <div class="example-box example-ok"><strong>✅ Ejemplo Correcto:</strong> Estás sentado cerca de una ventana y en el cristal se aprecian reflejos tenues de los edificios o luces exteriores.</div>
+        <div class="example-box example-bad"><strong>❌ Ejemplo Incorrecto:</strong> Solicitar el efecto de cristal sin reflejos ni textura, lo que anula la diferencia visual con una foto normal.</div>
+      </div>
+
+      <!-- Tabla comparativa de los 10 códigos -->
+      <div class="card">
+        <h2>Tabla Comparativa de los 10 Códigos Secretos</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Código Secreto</th>
+                <th>Categoría Visual</th>
+                <th>Efecto Principal</th>
+                <th>Sensación Transmitida</th>
+                <th>Modificador / Truco</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>/gravityshift</code></td>
+                <td>Surrealista</td>
+                <td>Ausencia de gravedad / Flotación</td>
+                <td>Fantasía, Ingravidez</td>
+                <td>Ideal para fondos de pantalla</td>
+              </tr>
+              <tr>
+                <td><code>/astralprojection</code></td>
+                <td>Surrealista</td>
+                <td>Duplicación cuerpo/alma</td>
+                <td>Misticismo, Espiritualidad</td>
+                <td>Usar con retratos individuales</td>
+              </tr>
+              <tr>
+                <td><code>/doubleexposure</code></td>
+                <td>Artística</td>
+                <td>Fusión rostro + escena urbana</td>
+                <td>Elegancia, Cinematográfico</td>
+                <td>Añadir <code>in [Ciudad]</code></td>
+              </tr>
+              <tr>
+                <td><code>/tinyplanet</code></td>
+                <td>Perspectiva</td>
+                <td>Deformación circular 360°</td>
+                <td>Aventura, Globalidad</td>
+                <td>Funciona mejor con paisajes abiertos</td>
+              </tr>
+              <tr>
+                <td><code>/giantworld</code></td>
+                <td>Escala</td>
+                <td>Sujeto gigante en ciudad</td>
+                <td>Poder, Épica</td>
+                <td>Añadir edificios alrededor</td>
+              </tr>
+              <tr>
+                <td><code>/fisheye</code></td>
+                <td>Lente</td>
+                <td>Distorsión curva de mirilla</td>
+                <td>Dinamismo, Estilo Urbano</td>
+                <td>Mantener el rostro centrado</td>
+              </tr>
+              <tr>
+                <td><code>/worldfiew</code></td>
+                <td>Ángulo</td>
+                <td>Vista de gusano (desde el suelo)</td>
+                <td>Grandeza, Imponencia</td>
+                <td>Orientar luz hacia arriba</td>
+              </tr>
+              <tr>
+                <td><code>/versaiview</code></td>
+                <td>Ángulo</td>
+                <td>Vista de pájaro (desde el aire)</td>
+                <td>Visión global, Geometría</td>
+                <td>Destacar sombras en el suelo</td>
+              </tr>
+              <tr>
+                <td><code>/rudorcracker</code></td>
+                <td>Textura</td>
+                <td>Marco de puerta entreabierta</td>
+                <td>Espontaneidad, Misterio</td>
+                <td>Encuadre natural centrado</td>
+              </tr>
+              <tr>
+                <td><code>/throughglass</code></td>
+                <td>Textura</td>
+                <td>Fotografiado tras un cristal</td>
+                <td>Intimidad, Melancolía</td>
+                <td>Funciona muy bien con luces de neón</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Glosario Completo -->
+      <div class="card">
+        <h2>Glosario de Términos Fundamentales</h2>
+        <div class="grid-2">
+          <div>
+            <p><strong>Bird's-eye view (Vista de pájaro):</strong> Toma fotográfica realizada desde un ángulo superior elevado apuntando hacia el suelo (activada con <code>/versaiview</code>).</p>
+            <p><strong>ChatGPT:</strong> Herramienta de inteligencia artificial desarrollada por OpenAI capaz de procesar texto e imágenes.</p>
+            <p><strong>Código Secreto:</strong> Comando corto precedido por barra inclinada <code>/</code> que aplica instrucciones complejas de edición fotográfica en ChatGPT.</p>
+            <p><strong>Doble Exposición:</strong> Técnica fotográfica que combina dos imágenes en un solo encuadre (ej. retrato + paisaje urbano con <code>/doubleexposure</code>).</p>
+            <p><strong>Fotingui:</strong> Expresión coloquial utilizada en la fuente para referirse a la fotografía base o selfie inicial del usuario.</p>
+          </div>
+          <div>
+            <p><strong>Lente Ojo de Pez (<em>Fisheye</em>):</strong> Objetivo fotográfico con un campo de visión de $180^\circ$ que produce una distorsión esférica (<code>/fisheye</code>).</p>
+            <p><strong>Magnific.com:</strong> Plataforma en línea de inteligencia artificial para la mejora, escalado y animación de imágenes a vídeo.</p>
+            <p><strong>MiniMax H3:</strong> Modelo de generación de vídeo disponible en <code>Magnific.com</code> diseñado para animar fotos fijas con físicas fluidas.</p>
+            <p><strong>Prompt:</strong> Instrucción de texto que contiene los comandos dirigidos a una inteligencia artificial para generar o modificar contenido.</p>
+            <p><strong>Worm's-eye view (Vista de gusano):</strong> Toma fotográfica contrapicada extrema realizada desde el nivel del suelo apuntando hacia el cielo (<code>/worldfiew</code>).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 3: PROCEDIMIENTO
+         ========================================== -->
+    <section id="panel-procedimiento" class="tab-panel" role="tabpanel" data-tab-panel="procedimiento">
+      <div class="card">
+        <h1>Procedimientos Paso a Paso: De la «Fotingui» al Vídeo Animado</h1>
+        <p>Sigue estos tres procedimientos ordenados por nivel de complejidad. Cada paso contiene una única acción principal, el motivo por el cual se realiza y el resultado esperado.</p>
+      </div>
+
+      <!-- Procedimiento 1 -->
+      <div class="card">
+        <h2>Procedimiento 1: Preparación de la Foto Base («Fotingui») — Nivel Inicial</h2>
+        <p><strong>Objetivo:</strong> Asegurar que la fotografía de origen cumpla los requisitos de luz, fondo y formato para que la inteligencia artificial conserve tus rasgos faciales.</p>
+
+        <ol class="step-list">
+          <li class="step-item">
+            <strong>Selecciona o toma una fotografía clara de tu persona o sujeto procurando que el rostro y el cuerpo estén bien iluminados.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> La IA necesita identificar claramente los contornos del cuerpo y la cara para mantener tu identidad en la nueva imagen generada.</div>
+          </li>
+          <li class="step-item">
+            <strong>Evita fondos excesivamente recargados o con poca luz.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Las sombras oscuras o el desorden visual dificultan que ChatGPT distinga dónde termina el sujeto y dónde empieza el fondo.</div>
+          </li>
+          <li class="step-item">
+            <strong>Guarda la imagen en formato JPEG o PNG en tu dispositivo.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Son los formatos estándar de imagen reconocidos universalmente por la plataforma <code>chatgpt.com</code> y su aplicación móvil.</div>
+          </li>
+        </ol>
+
+        <div class="example-box example-ok">
+          <strong>✅ Ejemplo Correcto de Foto Base:</strong> Una foto selfie o de cuerpo entero tomada de día, cerca de una ventana o en la calle, con el rostro nítido y enfocado.
+        </div>
+        <div class="example-box example-bad">
+          <strong>❌ Ejemplo Incorrecto de Foto Base:</strong> Una foto borrosa en un entorno oscuro con luces parpadeantes y la mitad de la cara tapada por una sombra.
+        </div>
+      </div>
+
+      <!-- Procedimiento 2 -->
+      <div class="card">
+        <h2>Procedimiento 2: Flujo de Trabajo en ChatGPT (Web y Móvil)</h2>
+        <p><strong>Objetivo:</strong> Subir la fotografía base a ChatGPT y ejecutar el código secreto junto con su instrucción descriptiva.</p>
+
+        <div class="flow-diagram" aria-label="Esquema del proceso básico en ChatGPT">
+          <div class="flow-node">1. Subir Fotografía Base («Fotingui»)</div>
+          <span class="flow-arrow">➔</span>
+          <div class="flow-node">2. Escribir Código /comando + Instrucción</div>
+          <span class="flow-arrow">➔</span>
+          <div class="flow-node">3. Imagen Resultante Efecto Profesional</div>
+        </div>
+
+        <ol class="step-list">
+          <li class="step-item">
+            <strong>Abre la aplicación de ChatGPT en tu teléfono o accede a <code>chatgpt.com</code> en tu ordenador.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Ambas plataformas soportan la subida de archivos multimediales y la interacción por chat.</div>
+          </li>
+          <li class="step-item">
+            <strong>Haz clic en el icono de adjuntar archivo (<code>+</code> o clip de papel) en la casilla de texto.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Permite enviar la fotografía base a la sesión de chat activa.</div>
+          </li>
+          <li class="step-item">
+            <strong>Selecciona la foto de tu galería y espérate a que se cargue la miniatura por completo.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Enviar el comando antes de que finalice la carga provocará un error de procesamiento o que ChatGPT responda solo con texto.</div>
+          </li>
+          <li class="step-item">
+            <strong>Escribe el código deseado (por ejemplo, <code>/gravityshift</code>) acompañado de la instrucción descriptiva en el cuadro de texto y pulsa Enviar.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Activa el motor de generación de imágenes utilizando tu foto como referencia principal.</div>
+          </li>
+        </ol>
+
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>ESQUEMA SINTÁCTICO DEL MENSAJE EN CHATGPT</span>
+            <button type="button" class="btn-copy" data-copy-target="syntax-formula">COPIAR</button>
+          </div>
+          <pre id="syntax-formula" class="copy-content">[Tu Foto Adjunta] + [Código /comando] + [Instrucción descriptiva] ---> [Resultado Pro]</pre>
+        </div>
+
+        <h3>Lista de Comprobación Previa (Checklist Interactivo — Progreso Guardado)</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted);">Marca cada casilla a medida que verifiques tu preparación:</p>
+        <ul class="checklist-group">
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-prep-1" data-check-id="chk-prep-1">
+            <label for="chk-prep-1"><span>La fotografía tiene buena iluminación y nitidez.</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-prep-2" data-check-id="chk-prep-2">
+            <label for="chk-prep-2"><span>La imagen está guardada en formato JPEG o PNG.</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-prep-3" data-check-id="chk-prep-3">
+            <label for="chk-prep-3"><span>Has accedido a <code>chatgpt.com</code> o la app oficial de ChatGPT.</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-prep-4" data-check-id="chk-prep-4">
+            <label for="chk-prep-4"><span>La foto se ha cargado por completo en el cuadro de chat antes de enviar el prompt.</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-prep-5" data-check-id="chk-prep-5">
+            <label for="chk-prep-5"><span>Has escrito la barra inclinada <code>/</code> pegada al nombre del código.</span></label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Procedimiento 3 -->
+      <div class="card">
+        <h2>Procedimiento 3: Animación e Inteligencia Artificial en Movimiento (Nivel Pro)</h2>
+        <p><strong>Objetivo:</strong> Dar vida a las imágenes estáticas generadas en ChatGPT convirtiéndolas en vídeos animados mediante la herramienta especializada <strong>Magnific.com</strong> y su modelo <strong>MiniMax H3</strong>.</p>
+
+        <div class="flow-diagram" aria-label="Esquema del flujo de animación completa">
+          <div class="flow-node">1. Imagen Creada en ChatGPT</div>
+          <span class="flow-arrow">➔</span>
+          <div class="flow-node">2. Entrar en Magnific.com</div>
+          <span class="flow-arrow">➔</span>
+          <div class="flow-node">3. Elegir Modelo MiniMax H3</div>
+          <span class="flow-arrow">➔</span>
+          <div class="flow-node">4. Vídeo Animado Final Generado</div>
+        </div>
+
+        <ol class="step-list">
+          <li class="step-item">
+            <strong>Guarda en tu dispositivo la imagen final generada por ChatGPT a tamaño completo.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Necesitas el archivo estático descargado en máxima resolución para usarlo como punto de partida o fotograma inicial.</div>
+          </li>
+          <li class="step-item">
+            <strong>Accede a la plataforma <code>Magnific.com</code> (desde el navegador web o su app móvil).</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Magnific es un motor avanzado de escalado, renderizado y generación de vídeo con IA.</div>
+          </li>
+          <li class="step-item">
+            <strong>Selecciona la sección «Generar Vídeo» (<em>Generate Video</em>).</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Abre la interfaz de trabajo específica para conversión de imagen a vídeo.</div>
+          </li>
+          <li class="step-item">
+            <strong>En el menú desplegable de modelos, elige el modelo <code>MiniMax H3</code>.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> El modelo MiniMax H3 está optimizado para interpretar imágenes estáticas y generar movimientos de cámara y físicas fluidas sin deformar al personaje.</div>
+          </li>
+          <li class="step-item">
+            <strong>Carga la fotografía descargada en la casilla denominada «Imagen Inicial» (<em>Initial Image</em>).</strong>
+            <div class="step-reason"><strong>Motivo:</strong> Establece la composición de la foto como el primer fotograma del vídeo.</div>
+          </li>
+          <li class="step-item">
+            <strong>Pulsa el botón Generar y espera unos segundos a que se procese la animación.</strong>
+            <div class="step-reason"><strong>Motivo:</strong> La IA analizará la escena (por ejemplo, los objetos flotando en <code>/gravityshift</code>) y creará un movimiento natural constante en bucle o secuencia de vídeo.</div>
+          </li>
+        </ol>
+
+        <h3>Lista de Comprobación de Calidad Final</h3>
+        <ul class="checklist-group">
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-qual-1" data-check-id="chk-qual-1">
+            <label for="chk-qual-1"><span>¿El rostro del sujeto sigue siendo reconocible tras la transformación?</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-qual-2" data-check-id="chk-qual-2">
+            <label for="chk-qual-2"><span>¿El código utilizado encaja con la temática de la foto base?</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-qual-3" data-check-id="chk-qual-3">
+            <label for="chk-qual-3"><span>¿Si usaste <code>/doubleexposure</code>, especificaste la ubicación deseada?</span></label>
+          </li>
+          <li class="checklist-item">
+            <input type="checkbox" id="chk-qual-4" data-check-id="chk-qual-4">
+            <label for="chk-qual-4"><span>¿Descargaste la imagen con la máxima resolución permitida antes de animarla?</span></label>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 4: PRÁCTICA
+         ========================================== -->
+    <section id="panel-practica" class="tab-panel" role="tabpanel" data-tab-panel="practica">
+      <div class="card">
+        <h1>3 Prompts Listos para Usar y 20 Ejercicios Prácticos con Solución</h1>
+        <p>En esta sección dispones de los 3 casos prácticos completos listos para copiar y adaptar, seguidos de 20 ejercicios de autoevaluación organizados en 4 niveles de dificultad progresiva.</p>
+      </div>
+
+      <!-- 3 Ejemplos Prácticos Completos -->
+      <div class="card">
+        <h2>Los 3 Ejemplos Prácticos Listos para Usar (Nivel Avanzado)</h2>
+
+        <h3>Ejemplo Práctico 1: Estilo Urbano y Épico (<code>/doubleexposure in Tokio</code>)</h3>
+        <p><strong>Finalidad:</strong> Crear un retrato cinemático donde tu perfil se combine con la arquitectura nocturna de una metrópolis.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT COMPLETO LISTO PARA USAR — EJEMPLO 1</span>
+            <button type="button" class="btn-copy" data-copy-target="ready-prompt-1">COPIAR</button>
+          </div>
+          <pre id="ready-prompt-1" class="copy-content">(Adjuntas tu foto)
+/doubleexposure in Tokio. Aplica un efecto de doble exposición donde en la parte superior se aprecie el contorno de mi rostro y en la parte inferior mi figura caminando entre las calles nocturnas y neones de Tokio.</pre>
+        </div>
+        <p><strong>Paso a paso de ejecución:</strong> 1) Abre ChatGPT y pulsa el botón de adjuntar imagen. 2) Selecciona un retrato claro de tu galería. 3) Copia y pega el prompt anterior en el cuadro de texto. 4) Si deseas cambiar de ciudad, sustituye la palabra «Tokio» por cualquier otra (ej. «Bilbao», «Barcelona», «Nueva York»). 5) Pulsa enviar y guarda la imagen generada.</p>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>Ejemplo Práctico 2: Fotografía Artística Surrealista (<code>/gravityshift</code>)</h3>
+        <p><strong>Finalidad:</strong> Producir una imagen mágica de levitación individual.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT COMPLETO LISTO PARA USAR — EJEMPLO 2</span>
+            <button type="button" class="btn-copy" data-copy-target="ready-prompt-2">COPIAR</button>
+          </div>
+          <pre id="ready-prompt-2" class="copy-content">(Adjuntas tu foto)
+/gravityshift. Crea un efecto de ausencia de gravedad en la foto, haciendo que mi cuerpo y algunos objetos del entorno floten suspendidos en el aire.</pre>
+        </div>
+        <p><strong>Paso a paso de ejecución:</strong> 1) Selecciona una fotografía en la que aparezcas de cuerpo entero o de torso superior. 2) Carga la foto en ChatGPT. 3) Pega el prompt de <code>/gravityshift</code>. 4) Presiona enviar para obtener tu foto en ingravidez.</p>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.25rem 0;">
+
+        <h3>Ejemplo Práctico 3: Efecto de Viaje o Panorámica (<code>/tinyplanet</code>)</h3>
+        <p><strong>Finalidad:</strong> Simular un viaje épico envolviendo el paisaje alrededor de ti.</p>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PROMPT COMPLETO LISTO PARA USAR — EJEMPLO 3</span>
+            <button type="button" class="btn-copy" data-copy-target="ready-prompt-3">COPIAR</button>
+          </div>
+          <pre id="ready-prompt-3" class="copy-content">(Adjuntas tu foto)
+/tinyplanet. Convierte el fondo de mi fotografía en un pequeño planeta circular estilo cámara 360°, manteniéndome como foco principal.</pre>
+        </div>
+        <p><strong>Paso a paso de ejecución:</strong> 1) Elige una foto que hayas tomado al aire libre (playa, parque, plaza o montaña). 2) Adjúntala en el chat. 3) Escribe el prompt y presiona enviar.</p>
+      </div>
+
+      <!-- 20 Ejercicios Prácticos con Soluciones Desplegables -->
+      <div class="card">
+        <h2>20 Ejercicios Prácticos con Soluciones Explicadas</h2>
+        <p>Intenta resolver mentalmente o por escrito cada planteamiento antes de pulsar sobre la tarjeta para desplegar la solución oficial.</p>
+
+        <h3>Nivel Básico (Ejercicios 1 a 5)</h3>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 1: Quieres lograr un efecto flotante con tu foto en ChatGPT. ¿Qué código debes escribir?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> El código <code>/gravityshift</code>.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 2: ¿Cómo se debe adjuntar la fotografía en la app móvil de ChatGPT?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Pulsando el icono de suma <code>+</code> o el clip de adjuntar archivo, seleccionando la foto de la galería y esperando a que cargue la miniatura antes de enviar el mensaje.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 3: Quieres una foto con efecto de lente de ojo de pez. Escribe el comando exacto.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> <code>(Adjuntas tu foto) /fisheye.</code></p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 4: ¿Cuál es el formato recomendado para guardar la foto base antes de subirla?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Formato JPEG o PNG.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 5: Quieres que tu imagen parezca tomada desde el aire mirando hacia abajo. ¿Qué código usas?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> El código <code>/versaiview</code> (Vista de pájaro / <em>bird's-eye view</em>).</p>
+          </div>
+        </details>
+
+        <h3>Nivel Intermedio (Ejercicios 6 a 10)</h3>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 6: Redacta el prompt completo para aplicar una doble exposición en la ciudad de Bilbao.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong></p>
+            <div class="copy-block">
+              <div class="copy-block-header">
+                <span>SOLUCIÓN COPIABLE — EJERCICIO 6</span>
+                <button type="button" class="btn-copy" data-copy-target="ex-sol-6">COPIAR</button>
+              </div>
+              <pre id="ex-sol-6" class="copy-content">(Adjuntas tu foto) /doubleexposure in Bilbao. Aplica un efecto de doble exposición combinando en la parte superior el contorno de mi rostro y en la parte inferior mi figura caminando entre las calles de Bilbao.</pre>
+            </div>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 7: Quieres simular una toma desde el nivel del suelo hacia arriba para parecer más alto e imponente. Escribe el prompt.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong></p>
+            <div class="copy-block">
+              <div class="copy-block-header">
+                <span>SOLUCIÓN COPIABLE — EJERCICIO 7</span>
+                <button type="button" class="btn-copy" data-copy-target="ex-sol-7">COPIAR</button>
+              </div>
+              <pre id="ex-sol-7" class="copy-content">(Adjuntas tu foto) /worldfiew. Cambia el encuadre a una vista de gusano (worm's-eye view), orientando la toma desde el nivel del suelo hacia arriba.</pre>
+            </div>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 8: Explica la diferencia entre el código /rudorcracker y el código /throughglass.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> <code>/rudorcracker</code> simula una toma espontánea a través del espacio de una puerta entreabierta, mientras que <code>/throughglass</code> genera la toma a través del cristal de una ventana con reflejos.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 9: ¿Qué ocurre si ejecutas el código /giantworld con una foto donde el fondo es una pared blanca sin objetos?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> El efecto perderá impacto porque la IA no tendrá referencias visuales (como edificios o coches) para mostrar la escala gigante del sujeto.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 10: Redacta el prompt para crear el efecto de planeta circular en 360 grados.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong></p>
+            <div class="copy-block">
+              <div class="copy-block-header">
+                <span>SOLUCIÓN COPIABLE — EJERCICIO 10</span>
+                <button type="button" class="btn-copy" data-copy-target="ex-sol-10">COPIAR</button>
+              </div>
+              <pre id="ex-sol-10" class="copy-content">(Adjuntas tu foto) /tinyplanet. Transforma el entorno de mi fotografía en un pequeño planeta circular en perspectiva panorámica, simulando una cámara 360°.</pre>
+            </div>
+          </div>
+        </details>
+
+        <h3>Nivel Avanzado (Ejercicios 11 a 15)</h3>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 11: Quieres crear una imagen surrealista de proyección astral en la playa. Redacta el prompt adaptado.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong></p>
+            <div class="copy-block">
+              <div class="copy-block-header">
+                <span>SOLUCIÓN COPIABLE — EJERCICIO 11</span>
+                <button type="button" class="btn-copy" data-copy-target="ex-sol-11">COPIAR</button>
+              </div>
+              <pre id="ex-sol-11" class="copy-content">(Adjuntas tu foto) /astralprojection. Crea una composición surrealista en la que aparezca recostado por un lado en la arena y flotando en el aire por el otro sobre el mar, simulando una proyección astral.</pre>
+            </div>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 12: Estás en Barcelona y quieres una doble exposición nocturna. Redacta el prompt exacto.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong></p>
+            <div class="copy-block">
+              <div class="copy-block-header">
+                <span>SOLUCIÓN COPIABLE — EJERCICIO 12</span>
+                <button type="button" class="btn-copy" data-copy-target="ex-sol-12">COPIAR</button>
+              </div>
+              <pre id="ex-sol-12" class="copy-content">(Adjuntas tu foto) /doubleexposure in Barcelona. Aplica un efecto de doble exposición combinando en la parte superior el contorno de mi rostro y en la parte inferior mi figura caminando entre las luces nocturnas de Barcelona.</pre>
+            </div>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 13: El usuario envió el prompt «gravityshift» sin la barra inclinada y ChatGPT le devolvió un texto en lugar de una foto modificada. ¿Cómo se corrige?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Se debe volver a subir la foto y escribir obligatoriamente el código con la barra delante: <code>/gravityshift</code>.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 14: ¿Por qué es importante mantener el rostro en el centro cuando se utiliza el código /fisheye?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Porque la distorsión del lente de ojo de pez es mayor en los bordes; colocar el rostro en el centro evita que la cara se deforme excesivamente.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 15: Tienes una foto de un paisaje urbano tomada de día y quieres un retrato melancólico a través de un cristal. Redacta el prompt.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong></p>
+            <div class="copy-block">
+              <div class="copy-block-header">
+                <span>SOLUCIÓN COPIABLE — EJERCICIO 15</span>
+                <button type="button" class="btn-copy" data-copy-target="ex-sol-15">COPIAR</button>
+              </div>
+              <pre id="ex-sol-15" class="copy-content">(Adjuntas tu foto) /throughglass. Genera la toma a través de un cristal de ventana, mostrando leves reflejos y textura de vidrio como si la foto se tomara desde el interior.</pre>
+            </div>
+          </div>
+        </details>
+
+        <h3>Nivel Pro (Ejercicios 16 a 20)</h3>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 16: Describe la secuencia completa para pasar de una selfie normal a un vídeo animado en ingravidez.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> 1) Subir selfie a ChatGPT con el prompt de <code>/gravityshift</code>. 2) Descargar la imagen generada. 3) Entrar en <code>Magnific.com</code> en la sección «Generar vídeo». 4) Seleccionar el modelo <code>MiniMax H3</code>. 5) Subir la foto como «Imagen inicial» y pulsar generar.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 17: ¿Qué plataforma externa y qué modelo específico se recomienda en la fuente para animar las fotos de ChatGPT?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> La plataforma <code>Magnific.com</code> y el modelo <code>MiniMax H3</code>.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 18: Al animar una imagen en Magnific.com, el rostro del sujeto aparece borroso. ¿Cuál es la causa más probable relacionada con la preparación de la imagen?</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Se subió una captura de pantalla de baja calidad o una imagen no descargada a resolución completa desde ChatGPT.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 19: Crea un flujo de trabajo para promocionar un viaje a Tokio en redes sociales usando 2 códigos y animación.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Generar Foto 1 con <code>/doubleexposure in Tokio</code>, Foto 2 con <code>/tinyplanet</code>, descargar ambas, cargarlas por separado en <code>Magnific.com</code> con el modelo <code>MiniMax H3</code> y publicar los 2 vídeos resultantes.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>Ejercicio 20: Justifica por qué el uso de códigos secretos en ChatGPT reemplaza la necesidad de comprar una cámara Insta360 de 500€.</summary>
+          <div class="collapsible-body">
+            <p><strong>Solución:</strong> Porque el código <code>/tinyplanet</code> recrea mediante IA la misma proyección panorámica esférica de 360 grados a partir de una foto convencional sin desembolsar dinero en equipamiento especializado.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 5: ERRORES
+         ========================================== -->
+    <section id="panel-errores" class="tab-panel" role="tabpanel" data-tab-panel="errores">
+      <div class="card">
+        <h1>Errores Frecuentes, Prohibiciones y Solución de Problemas</h1>
+        <p>Evita estos fallos críticos identificados durante la preparación de la foto, el envío del comando en ChatGPT y el proceso de animación en <code>Magnific.com</code>.</p>
+      </div>
+
+      <div class="card">
+        <h2>Los 5 Errores que Nunca Deben Cometerse</h2>
+        <div class="example-box example-bad">
+          <strong>1. Olvidar la barra inclinada <code>/</code>:</strong> Escribir el código como texto normal (por ejemplo, <code>gravityshift</code> en lugar de <code>/gravityshift</code>) impide que el sistema lo interprete como comando disparador de estilo.
+        </div>
+        <div class="example-box example-bad">
+          <strong>2. Subir fotografías de muy baja resolución o con rostro oculto:</strong> Si la cara está a oscuras, borrosa o tapada, la inteligencia artificial no podrá mantener la identidad del sujeto.
+        </div>
+        <div class="example-box example-bad">
+          <strong>3. Cargar la imagen en la herramienta de animación sin haberla descargado previamente a resolución completa:</strong> Subir una miniatura o recorte reduce drásticamente la nitidez del vídeo resultante.
+        </div>
+        <div class="example-box example-bad">
+          <strong>4. Usar múltiples códigos contradictorios en un solo prompt:</strong> Por ejemplo, pedir vista de gusano (<code>/worldfiew</code>) y vista de pájaro (<code>/versaiview</code>) al mismo tiempo confunde al motor visual.
+        </div>
+        <div class="example-box example-bad">
+          <strong>5. No revisar el modelo seleccionado en Magnific.com:</strong> Utilizar un modelo de animación agresivo en lugar de <code>MiniMax H3</code> puede deformar las facciones del rostro durante el movimiento.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2>Errores en la Fase Inicial (ChatGPT)</h2>
+          <p><strong>Problema A:</strong> Enviar el texto del código sin adjuntar la imagen o antes de que termine de subir.</p>
+          <p><strong>Solución verificable:</strong> Comprueba siempre que el icono de la miniatura de la imagen aparece completamente cargado dentro de la casilla antes de presionar Enter o Enviar.</p>
+          <hr style="border:none; border-top:1px solid var(--border); margin:0.85rem 0;">
+          <p><strong>Problema B:</strong> Escribir el comando sin la barra <code>/</code>.</p>
+          <p><strong>Solución verificable:</strong> Verifica que el primer carácter del comando sea siempre <code>/</code> pegado sin espacios a la palabra clave.</p>
+        </div>
+
+        <div class="card">
+          <h2>Errores al Animar en Magnific.com</h2>
+          <p><strong>Problema A:</strong> La cara del sujeto se distorsiona durante el vídeo generado.</p>
+          <p><strong>Solución verificable:</strong> Asegúrate de elegir específicamente el modelo <strong>MiniMax H3</strong> en el desplegable de modelos de Magnific.com.</p>
+          <hr style="border:none; border-top:1px solid var(--border); margin:0.85rem 0;">
+          <p><strong>Problema B:</strong> La animación se ve pixelada o borrosa.</p>
+          <p><strong>Solución verificable:</strong> Descarga la imagen desde ChatGPT usando el botón oficial de descarga a tamaño completo antes de subirla a la casilla «Imagen Inicial» (<em>Initial Image</em>).</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Preguntas Frecuentes (FAQ) y Consejos de Experto</h2>
+
+        <details class="collapsible-card" open>
+          <summary>1. ¿Tengo que pagar por algún programa para usar estos códigos?</summary>
+          <div class="collapsible-body">
+            <p>No. Puedes utilizar ChatGPT de forma gratuita o con las versiones de suscripción estándar. La subida de imágenes y el uso de prompts funciona tanto en la versión web (<code>chatgpt.com</code>) como en la aplicación móvil.</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>2. ¿Qué hago si el resultado de ChatGPT no me gusta a la primera?</summary>
+          <div class="collapsible-body">
+            <p>Puedes pulsar el botón de «Regenerar» o escribir un mensaje de seguimiento pidiendo un ajuste específico (por ejemplo: <em>«Haz que el efecto de flotación sea más sutil»</em>).</p>
+          </div>
+        </details>
+
+        <details class="collapsible-card">
+          <summary>3. ¿Puedo combinar dos códigos en el mismo mensaje?</summary>
+          <div class="collapsible-body">
+            <p>Aunque es posible, la buena práctica recomienda usar un solo código principal a la vez para evitar que la inteligencia artificial se confunda entre instrucciones contradictorias.</p>
+          </div>
+        </details>
+
+        <div class="example-box example-ok" style="margin-top:1rem;">
+          <strong>🎯 Consejos de Experto:</strong>
+          <ul style="padding-left:1.2rem; margin-top:0.35rem;">
+            <li><strong>Atención al fondo original:</strong> Los fondos sencillos permiten a la IA interpretar mejor la perspectiva para códigos de ángulo extremo como <code>/worldfiew</code> o <code>/versaiview</code>.</li>
+            <li><strong>Experimenta con ubicaciones reales:</strong> En el código <code>/doubleexposure</code>, probar con lugares icónicos (como «Nueva York», «París», «Tokio» o «Bilbao») produce contrastes arquitectónicos espectaculares.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 6: RESUMEN
+         ========================================== -->
+    <section id="panel-resumen" class="tab-panel" role="tabpanel" data-tab-panel="resumen">
+      <div class="card card-highlight">
+        <h1>Resumen General y Plan de Continuidad</h1>
+        <p>Este tutorial ha enseñado a transformar fotografías cotidianas en imágenes profesionales utilizando <strong>10 códigos secretos dentro de ChatGPT</strong> y a animarlas posteriormente con <strong>Magnific.com (modelo MiniMax H3)</strong>. A través de un proceso sencillo de 4 pasos (seleccionar foto, adjuntar en ChatGPT, aplicar código con prompt descriptivo y descargar), cualquier usuario sin experiencia previa puede dominar encuadres surrealistas, vistas aéreas, efectos de escala y composiciones urbanas sin invertir en equipos fotográficos costosos.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2>Síntesis por Capítulos</h2>
+          <ul style="padding-left:1.2rem;">
+            <li style="margin-bottom:0.6rem;"><strong>Capítulo 1 (Preparación e Interfaz):</strong> Necesitas una foto nítida y bien iluminada en JPEG o PNG. Abres ChatGPT (móvil o web), adjuntas tu imagen, escribes el comando <code>/</code> seguido del código y la instrucción, y envías.</li>
+            <li style="margin-bottom:0.6rem;"><strong>Capítulo 2 (Los 10 Códigos Secretos):</strong> Cada código activa una transformación específica: Surrealista (<code>/gravityshift</code>, <code>/astralprojection</code>, <code>/doubleexposure</code>), Perspectiva/Escala (<code>/tinyplanet</code>, <code>/giantworld</code>, <code>/fisheye</code>), Ángulo extremo (<code>/worldfiew</code>, <code>/versaiview</code>) o Textura espontánea (<code>/rudorcracker</code>, <code>/throughglass</code>).</li>
+            <li style="margin-bottom:0.6rem;"><strong>Capítulo 3 (Prompts Listos para Usar):</strong> Los prompts combinan el código base con una breve descripción explicativa y admiten variables como el nombre de la ciudad en <code>/doubleexposure in [Ciudad]</code>.</li>
+            <li style="margin-bottom:0.6rem;"><strong>Capítulo 4 (Animación en Movimiento):</strong> Guardas la imagen de ChatGPT, entras en <code>Magnific.com</code>, eliges «Generar vídeo», seleccionas el modelo <code>MiniMax H3</code>, subes la foto como «Imagen inicial» y procesas.</li>
+            <li style="margin-bottom:0.6rem;"><strong>Capítulo 5 (Buenas Prácticas):</strong> Verificar siempre las listas de comprobación asegura resultados constantes sin depender del azar.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Conceptos Clave para Recordar</h2>
+          <ul style="padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;"><strong>Prompt:</strong> Instrucción de texto que se le da a una IA para generar o modificar contenido.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Código Secreto:</strong> Comando corto iniciado con la barra inclinada <code>/</code> que activa un estilo fotográfico prefijado.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Fotingui:</strong> Término coloquial utilizado en la fuente para referirse a la fotografía base o selfie inicial.</li>
+            <li style="margin-bottom:0.5rem;"><strong>Worm's-eye view (Vista de gusano):</strong> Ángulo de cámara contrapicado extremo desde el suelo hacia arriba (<code>/worldfiew</code>).</li>
+            <li style="margin-bottom:0.5rem;"><strong>Bird's-eye view (Vista de pájaro):</strong> Ángulo de cámara picado elevado desde el aire hacia abajo (<code>/versaiview</code>).</li>
+            <li style="margin-bottom:0.5rem;"><strong>MiniMax H3:</strong> Modelo de generación de vídeo disponible en <code>Magnific.com</code> diseñado para animar fotos fijas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>¿Cómo Seguir Aprendiendo?</h2>
+        <ol style="padding-left:1.3rem;">
+          <li style="margin-bottom:0.5rem;"><strong>Practica diariamente:</strong> Prueba un código diferente cada día con fotos tomadas en entornos distintos (interiores, exteriores, naturaleza, ciudad).</li>
+          <li style="margin-bottom:0.5rem;"><strong>Crea tu propia biblioteca de ciudades:</strong> Experimenta con el código <code>/doubleexposure in [ubicación]</code> cambiando países y monumentos.</li>
+          <li style="margin-bottom:0.5rem;"><strong>Combina herramientas de vídeo:</strong> Explora diferentes parámetros de animación en <code>Magnific.com</code> con tus imágenes generadas.</li>
+          <li style="margin-bottom:0.5rem;"><strong>Sigue a creadores especializados:</strong> Revisa las publicaciones del canal <code>maxmaxdata</code> sobre macrodatos e inteligencia artificial para estar al día de nuevos comandos.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 7: FUENTES
+         ========================================== -->
+    <section id="panel-fuentes" class="tab-panel" role="tabpanel" data-tab-panel="fuentes">
+      <div class="card">
+        <h1>Fuentes Documentales y Enlaces Utilizables</h1>
+        <p>Toda la información técnica, códigos, nombres de modelos y ejemplos de este tutorial proceden rigurosamente del material documental de partida sin alterar su significado ni inventar datos.</p>
+      </div>
+
+      <div class="card">
+        <h2>Referencia Principal de Vídeo y Documentación</h2>
+        <ul style="padding-left:1.2rem; margin-bottom:1rem;">
+          <li style="margin-bottom:0.5rem;"><strong>Nombre del Vídeo de YouTube:</strong> <code>TRUCO CHATGPT 10 CÓDIGOS IMAGENES PRO #ia #ai #chatgpt #inteligenciaartificial #fotografiaia</code></li>
+          <li style="margin-bottom:0.5rem;"><strong>Canal de YouTube:</strong> <code>maxmaxdata</code></li>
+          <li style="margin-bottom:0.5rem;"><strong>Documentación complementaria de la fuente:</strong> Notas del proyecto «Códigos Secretos de ChatGPT para Imágenes Profesionales» por Rubén Sbarsky.</li>
+        </ul>
+
+        <h3>URL del Vídeo de Referencia (Copiable)</h3>
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>URL DIRECTA DEL VÍDEO DE REFERENCIA (YOUTUBE SHORTS)</span>
+            <button type="button" class="btn-copy" data-copy-target="url-youtube-source">COPIAR URL</button>
+          </div>
+          <pre id="url-youtube-source" class="copy-content">https://youtube.com/shorts/dtQ-2uHQpGM?is=wxDcAR668nCkV0MO</pre>
+        </div>
+        <p><a href="https://youtube.com/shorts/dtQ-2uHQpGM?is=wxDcAR668nCkV0MO" target="_blank" rel="noopener noreferrer" style="color:var(--accent); font-weight:700;">🔗 Abrir vídeo de referencia en una pestaña nueva</a></p>
+      </div>
+
+      <div class="card">
+        <h2>Plataformas Mencionadas en el Procedimiento</h2>
+        <p>Utiliza los botones de copia para llevar las direcciones exactas a tu navegador:</p>
+
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PLATAFORMA CHATGPT (OPENAI)</span>
+            <button type="button" class="btn-copy" data-copy-target="url-chatgpt">COPIAR URL</button>
+          </div>
+          <pre id="url-chatgpt" class="copy-content">https://chatgpt.com</pre>
+        </div>
+
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span>PLATAFORMA DE ANIMACIÓN CON MODELO MINIMAX H3</span>
+            <button type="button" class="btn-copy" data-copy-target="url-magnific">COPIAR URL</button>
+          </div>
+          <pre id="url-magnific" class="copy-content">https://magnific.com</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PESTAÑA 8: CRÉDITOS
+         ========================================== -->
+    <section id="panel-creditos" class="tab-panel" role="tabpanel" data-tab-panel="creditos">
+      <div class="card">
+        <!-- 1. Título de la sección -->
+        <h1 style="text-align:center;">Créditos del Tutorial</h1>
+
+        <!-- 2. SVG animado compartido con INICIO (primera pantalla incluso en móviles) -->
+        <div class="svg-showcase-box" style="margin-top:0.75rem;">
+          <div id="svg-mount-creditos" class="svg-mount-target" role="region" aria-label="Ilustración animada compartida de los 10 códigos secretos de fotografía en ChatGPT y animación MiniMax H3"></div>
+          <div class="svg-controls-row">
+            <button type="button" class="btn-tool btn-toggle-svg-anim" data-target="svg-mount-creditos">⏸️ Pausar / Reanudar animación</button>
+          </div>
+          <!-- 3. Breve descripción de la ilustración -->
+          <p class="svg-caption">Ilustración vectorial animada generada desde plantilla única: Representa el objetivo fotográfico de IA en ChatGPT procesando comandos de ingravidez (<code>/gravityshift</code>), doble exposición urbana (<code>/doubleexposure</code>), planeta panorámico 360° (<code>/tinyplanet</code>) y conversión a vídeo con <code>MiniMax H3</code>.</p>
+        </div>
+
+        <!-- 4. Nombre del autor (elemento visual más destacado) -->
+        <div class="credits-author-name">Rubén Sbarsky</div>
+
+        <!-- 5. Texto «Autor del tutorial» -->
+        <div class="credits-author-role">Autor del tutorial</div>
+
+        <!-- 6. Información adicional pertinente y fecha/hora fija -->
+        <div class="card card-highlight" style="max-width:680px; margin:0 auto 1rem;">
+          <p><strong>Obra:</strong> Códigos Secretos de ChatGPT para Imágenes Profesionales — Guía Didáctica Interactiva.</p>
+          <p><strong>Metodología de desarrollo:</strong> Arquitectura pedagógica progresiva GAUNTLET (Constructor + Auditoría Adversarial) en archivo HTML autónomo sin dependencias externas.</p>
+          <p><strong>Fecha y hora de creación (fija):</strong> <code>17/10/2026 — 05:58:11</code></p>
+          <!-- 7. Número de versión coincidente con el archivo -->
+          <p style="margin-bottom:0;"><strong>Versión del entregable:</strong> <span class="brand-badge">V001</span> (Archivo: <code>tutorial_codigos_secretos_chatgpt_imagenes_profesionales_V001.html</code>)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Botón flotante para volver arriba -->
+  <button type="button" id="btn-back-to-top" title="Volver al principio de la página" aria-label="Volver arriba">↑ Arriba</button>
+
+  <!-- Notificación emergente para copia manual o aviso de impresión -->
+  <div id="notification-banner" role="alert" aria-live="assertive"></div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      /* =========================================================
+         1. GESTIÓN DE PLANTILLA ÚNICA SVG Y MONTAJE CON IDs ÚNICOS
+         ========================================================= */
+      var svgTemplateString = "";
+      var svgHolder = document.getElementById("svg-master-template-holder");
+      if (svgHolder) {
+        svgTemplateString = svgHolder.innerHTML.trim();
+        svgHolder.parentNode.removeChild(svgHolder);
+      }
+
+      function buildFallbackDataUri(prefix) {
+        var rawSvg = svgTemplateString.replace(/__PREFIX__/g, prefix + "_fb_");
+        return "data:image/svg+xml;utf8," + encodeURIComponent(rawSvg);
+      }
+
+      function mountSvgInstance(containerId, uniquePrefix) {
+        var container = document.getElementById(containerId);
+        if (!container || !svgTemplateString) return;
+
+        try {
+          var customizedSvg = svgTemplateString.replace(/__PREFIX__/g, uniquePrefix + "_");
+          container.innerHTML = customizedSvg;
+          container.classList.remove("svg-paused");
+
+          var svgEl = container.querySelector("svg");
+          if (!svgEl) {
+            throw new Error("Elemento SVG no encontrado tras innerHTML");
+          }
+        } catch (err) {
+          var fallbackImg = document.createElement("img");
+          fallbackImg.src = buildFallbackDataUri(uniquePrefix);
+          fallbackImg.alt = container.getAttribute("aria-label") || "Ilustración del tutorial";
+          container.innerHTML = "";
+          container.appendChild(fallbackImg);
+        }
+      }
+
+      function ensureVisibleSvgsMounted() {
+        var inicioPanel = document.getElementById("panel-inicio");
+        var creditosPanel = document.getElementById("panel-creditos");
+
+        var mountInicio = document.getElementById("svg-mount-inicio");
+        if (mountInicio && (inicioPanel.classList.contains("active") || mountInicio.children.length === 0)) {
+          if (mountInicio.children.length === 0) {
+            mountSvgInstance("svg-mount-inicio", "inst_inicio");
+          }
+        }
+
+        var mountCreditos = document.getElementById("svg-mount-creditos");
+        if (mountCreditos && (creditosPanel.classList.contains("active") || mountCreditos.children.length === 0)) {
+          if (mountCreditos.children.length === 0) {
+            mountSvgInstance("svg-mount-creditos", "inst_creditos");
+          }
+        }
+      }
+
+      // Montaje inicial de ambas instancias desde la plantilla única
+      mountSvgInstance("svg-mount-inicio", "inst_inicio");
+      mountSvgInstance("svg-mount-creditos", "inst_creditos");
+
+      // Comprobación periódica para reparar cualquier contenedor SVG que quede vacío
+      setInterval(ensureVisibleSvgsMounted, 1500);
+
+      // Control manual de pausa / reanudación del SVG animado
+      var pauseButtons = document.querySelectorAll(".btn-toggle-svg-anim");
+      for (var i = 0; i < pauseButtons.length; i++) {
+        pauseButtons[i].addEventListener("click", function() {
+          var targetId = this.getAttribute("data-target");
+          var targetContainer = document.getElementById(targetId);
+          if (!targetContainer) return;
+          var isPaused = targetContainer.classList.toggle("svg-paused");
+          this.textContent = isPaused ? "▶️ Reanudar animación" : "⏸️ Pausar / Reanudar animación";
+        });
+      }
+
+      /* =========================================================
+         2. PERSISTENCIA SEGURA EN LOCALSTORAGE
+         ========================================================= */
+      function safeGetStorage(key, fallback) {
+        try {
+          var val = window.localStorage.getItem(key);
+          return val !== null ? val : fallback;
+        } catch (e) {
+          return fallback;
+        }
+      }
+
+      function safeSetStorage(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (e) {
+          // Si localStorage está restringido, el tutorial continúa funcionando sin bloquearse
+        }
+      }
+
+      /* =========================================================
+         3. NAVEGACIÓN POR PESTAÑAS Y SOPORTE DE FRAGMENTOS URL
+         ========================================================= */
+      var tabButtons = document.querySelectorAll(".tab-btn");
+      var tabPanels = document.querySelectorAll(".tab-panel");
+      var validTabs = ["inicio", "conceptos", "procedimiento", "practica", "errores", "resumen", "fuentes", "creditos"];
+
+      function activateTab(tabName, updateHash) {
+        if (validTabs.indexOf(tabName) === -1) {
+          tabName = "inicio";
+        }
+
+        // Salir del modo búsqueda si estaba activo
+        var searchBanner = document.getElementById("search-status-banner");
+        if (searchBanner && searchBanner.style.display === "flex") {
+          clearSearchFilter(false);
+        }
+
+        for (var i = 0; i < tabButtons.length; i++) {
+          var btn = tabButtons[i];
+          var isMatch = btn.getAttribute("data-tab") === tabName;
+          btn.classList.toggle("active", isMatch);
+          btn.setAttribute("aria-selected", isMatch ? "true" : "false");
+        }
+
+        for (var j = 0; j < tabPanels.length; j++) {
+          var panel = tabPanels[j];
+          var isPanelMatch = panel.getAttribute("data-tab-panel") === tabName;
+          panel.classList.toggle("active", isPanelMatch);
+        }
+
+        // Si la pestaña activada contiene un SVG, remontar/reiniciar para asegurar visibilidad inmediata
+        if (tabName === "inicio") {
+          mountSvgInstance("svg-mount-inicio", "inst_inicio");
+        } else if (tabName === "creditos") {
+          mountSvgInstance("svg-mount-creditos", "inst_creditos");
+        }
+
+        safeSetStorage("tut_chatgpt_active_tab_v001", tabName);
+
+        if (updateHash) {
+          try {
+            history.replaceState(null, "", "#" + tabName);
+          } catch (e) {}
+        }
+      }
+
+      for (var t = 0; t < tabButtons.length; t++) {
+        tabButtons[t].addEventListener("click", function() {
+          var targetTab = this.getAttribute("data-tab");
+          activateTab(targetTab, true);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      function resolveInitialTab() {
+        var hash = (window.location.hash || "").replace("#", "").toLowerCase();
+        if (validTabs.indexOf(hash) !== -1) {
+          activateTab(hash, false);
+          return;
+        }
+        var savedTab = safeGetStorage("tut_chatgpt_active_tab_v001", "inicio");
+        activateTab(savedTab, false);
+      }
+
+      window.addEventListener("hashchange", function() {
+        var hash = (window.location.hash || "").replace("#", "").toLowerCase();
+        if (validTabs.indexOf(hash) !== -1) {
+          activateTab(hash, false);
+        }
+      });
+
+      resolveInitialTab();
+
+      /* =========================================================
+         4. BUSCADOR INTERNO TRANSVERSAL
+         ========================================================= */
+      var searchInput = document.getElementById("global-search-input");
+      var searchClearBtn = document.getElementById("search-clear-btn");
+      var searchStatusBanner = document.getElementById("search-status-banner");
+      var searchStatusText = document.getElementById("search-status-text");
+      var btnExitSearch = document.getElementById("btn-exit-search");
+
+      function clearSearchFilter(restoreSavedTab) {
+        searchInput.value = "";
+        searchClearBtn.style.display = "none";
+        searchStatusBanner.style.display = "none";
+
+        var highlighted = document.querySelectorAll(".search-match-card");
+        for (var i = 0; i < highlighted.length; i++) {
+          highlighted[i].classList.remove("search-match-card");
+        }
+
+        if (restoreSavedTab) {
+          var currentTab = safeGetStorage("tut_chatgpt_active_tab_v001", "inicio");
+          activateTab(currentTab, false);
+        }
+      }
+
+      function executeSearch(query) {
+        var cleanQuery = query.trim().toLowerCase();
+        if (!cleanQuery) {
+          clearSearchFilter(true);
+          return;
+        }
+
+        searchClearBtn.style.display = "block";
+        var totalMatches = 0;
+        var panelsWithMatches = 0;
+
+        for (var i = 0; i < tabPanels.length; i++) {
+          var panel = tabPanels[i];
+          var cards = panel.querySelectorAll(".card");
+          var panelHasMatch = false;
+
+          for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
+            var text = (card.textContent || "").toLowerCase();
+            if (text.indexOf(cleanQuery) !== -1) {
+              card.classList.add("search-match-card");
+              panelHasMatch = true;
+              totalMatches++;
+              // Abrir desplegables dentro de la tarjeta si coinciden
+              var detailsList = card.querySelectorAll("details");
+              for (var d = 0; d < detailsList.length; d++) {
+                if ((detailsList[d].textContent || "").toLowerCase().indexOf(cleanQuery) !== -1) {
+                  detailsList[d].open = true;
+                }
+              }
+            } else {
+              card.classList.remove("search-match-card");
+            }
+          }
+
+          if (panelHasMatch) {
+            panel.classList.add("active");
+            panelsWithMatches++;
+          } else {
+            panel.classList.remove("active");
+          }
+        }
+
+        // Nunca dejar la pantalla vacía si no hay coincidencias
+        if (panelsWithMatches === 0) {
+          var fallbackTab = safeGetStorage("tut_chatgpt_active_tab_v001", "inicio");
+          for (var p = 0; p < tabPanels.length; p++) {
+            tabPanels[p].classList.toggle("active", tabPanels[p].getAttribute("data-tab-panel") === fallbackTab);
+          }
+          searchStatusText.textContent = "No se encontraron coincidencias para «" + query + "». Mostrando la pestaña actual.";
+        } else {
+          searchStatusText.textContent = "Se encontraron " + totalMatches + " bloques con «" + query + "» en " + panelsWithMatches + " pestaña(s).";
+        }
+
+        searchStatusBanner.style.display = "flex";
+        ensureVisibleSvgsMounted();
+      }
+
+      searchInput.addEventListener("input", function() {
+        executeSearch(this.value);
+      });
+
+      searchClearBtn.addEventListener("click", function() {
+        clearSearchFilter(true);
+      });
+
+      btnExitSearch.addEventListener("click", function() {
+        clearSearchFilter(true);
+      });
+
+      /* =========================================================
+         5. CONTROL DE TAMAÑO DE LETRA Y TEMA OSCURO/CLARO
+         ========================================================= */
+      var currentFontSize = parseInt(safeGetStorage("tut_chatgpt_fontsize_v001", "16"), 10);
+      if (isNaN(currentFontSize) || currentFontSize < 13 || currentFontSize > 22) {
+        currentFontSize = 16;
+      }
+      document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px");
+
+      document.getElementById("btn-font-dec").addEventListener("click", function() {
+        if (currentFontSize > 13) {
+          currentFontSize -= 1;
+          document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px");
+          safeSetStorage("tut_chatgpt_fontsize_v001", String(currentFontSize));
+        }
+      });
+
+      document.getElementById("btn-font-inc").addEventListener("click", function() {
+        if (currentFontSize < 22) {
+          currentFontSize += 1;
+          document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px");
+          safeSetStorage("tut_chatgpt_fontsize_v001", String(currentFontSize));
+        }
+      });
+
+      var currentTheme = safeGetStorage("tut_chatgpt_theme_v001", "dark");
+      document.documentElement.setAttribute("data-theme", currentTheme);
+
+      document.getElementById("btn-theme-toggle").addEventListener("click", function() {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        safeSetStorage("tut_chatgpt_theme_v001", currentTheme);
+      });
+
+      /* =========================================================
+         6. LISTAS DE COMPROBACIÓN CON PERSISTENCIA
+         ========================================================= */
+      var checkboxes = document.querySelectorAll('input[type="checkbox"][data-check-id]');
+      for (var k = 0; k < checkboxes.length; k++) {
+        (function(chk) {
+          var id = chk.getAttribute("data-check-id");
+          var savedState = safeGetStorage("tut_chatgpt_chk_" + id, "0");
+          if (savedState === "1") {
+            chk.checked = true;
+            chk.closest(".checklist-item").classList.add("checked");
+          }
+          chk.addEventListener("change", function() {
+            var isChecked = chk.checked;
+            chk.closest(".checklist-item").classList.toggle("checked", isChecked);
+            safeSetStorage("tut_chatgpt_chk_" + id, isChecked ? "1" : "0");
+          });
+        })(checkboxes[k]);
+      }
+
+      /* =========================================================
+         7. BOTONES COPIAR CON ALTERNATIVA DE FALLBACK
+         ========================================================= */
+      var notificationBanner = document.getElementById("notification-banner");
+      var notifTimeout = null;
+
+      function showNotification(htmlMessage, durationMs) {
+        if (!notificationBanner) return;
+        notificationBanner.innerHTML = htmlMessage;
+        notificationBanner.style.display = "block";
+        if (notifTimeout) clearTimeout(notifTimeout);
+        notifTimeout = setTimeout(function() {
+          notificationBanner.style.display = "none";
+        }, durationMs || 5000);
+      }
+
+      function copyTextToClipboard(text, btnElement) {
+        function markCopied() {
+          var originalLabel = btnElement.getAttribute("data-orig-label") || btnElement.textContent;
+          btnElement.setAttribute("data-orig-label", originalLabel);
+          btnElement.textContent = "✓ COPIADO";
+          btnElement.classList.add("copied");
+          setTimeout(function() {
+            btnElement.textContent = originalLabel;
+            btnElement.classList.remove("copied");
+          }, 2000);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(markCopied).catch(function() {
+            fallbackCopyText(text, markCopied);
+          });
+        } else {
+          fallbackCopyText(text, markCopied);
+        }
+      }
+
+      function fallbackCopyText(text, onSuccess) {
+        try {
+          var tempArea = document.createElement("textarea");
+          tempArea.value = text;
+          tempArea.style.position = "fixed";
+          tempArea.style.left = "-9999px";
+          document.body.appendChild(tempArea);
+          tempArea.focus();
+          tempArea.select();
+          var successful = document.execCommand("copy");
+          document.body.removeChild(tempArea);
+          if (successful) {
+            onSuccess();
+            return;
+          }
+        } catch (err) {}
+
+        showNotification(
+          "<strong>Aviso del portapapeles:</strong> Tu navegador restringió la copia automática. Selecciona y copia manualmente el texto del recuadro con <code>Ctrl+C</code> o mantén pulsado en el móvil.",
+          6500
+        );
+      }
+
+      var copyButtons = document.querySelectorAll(".btn-copy");
+      for (var b = 0; b < copyButtons.length; b++) {
+        copyButtons[b].addEventListener("click", function() {
+          var targetId = this.getAttribute("data-copy-target");
+          var targetEl = document.getElementById(targetId);
+          if (!targetEl) return;
+          var exactText = targetEl.textContent;
+          copyTextToClipboard(exactText, this);
+        });
+      }
+
+      /* =========================================================
+         8. BARRA DE PROGRESO DE LECTURA Y BOTÓN VOLVER ARRIBA
+         ========================================================= */
+      var progressBar = document.getElementById("reading-progress-bar");
+      var btnBackToTop = document.getElementById("btn-back-to-top");
+
+      window.addEventListener("scroll", function() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        if (progressBar) {
+          progressBar.style.width = progress + "%";
+        }
+        if (btnBackToTop) {
+          btnBackToTop.style.display = scrollTop > 280 ? "block" : "none";
+        }
+      });
+
+      btnBackToTop.addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      /* =========================================================
+         9. PREPARACIÓN Y RESTAURACIÓN DE IMPRESIÓN / PDF A4
+         ========================================================= */
+      var closedDetailsBeforePrint = [];
+
+      function prepareDocumentForPrint() {
+        // 1. Asegurar que ambas instancias SVG están montadas y visibles en estado completo
+        mountSvgInstance("svg-mount-inicio", "inst_inicio");
+        mountSvgInstance("svg-mount-creditos", "inst_creditos");
+
+        var mInicio = document.getElementById("svg-mount-inicio");
+        var mCreditos = document.getElementById("svg-mount-creditos");
+        if (mInicio) mInicio.classList.add("svg-paused");
+        if (mCreditos) mCreditos.classList.add("svg-paused");
+
+        // 2. Abrir temporalmente todos los bloques desplegables recordando cuáles estaban cerrados
+        closedDetailsBeforePrint = [];
+        var allDetails = document.querySelectorAll("details.collapsible-card");
+        for (var i = 0; i < allDetails.length; i++) {
+          if (!allDetails[i].open) {
+            closedDetailsBeforePrint.push(allDetails[i]);
+            allDetails[i].open = true;
+          }
+        }
+      }
+
+      function restoreDocumentAfterPrint() {
+        for (var i = 0; i < closedDetailsBeforePrint.length; i++) {
+          closedDetailsBeforePrint[i].open = false;
+        }
+        closedDetailsBeforePrint = [];
+
+        var mInicio = document.getElementById("svg-mount-inicio");
+        var mCreditos = document.getElementById("svg-mount-creditos");
+        if (mInicio) mInicio.classList.remove("svg-paused");
+        if (mCreditos) mCreditos.classList.remove("svg-paused");
+      }
+
+      window.addEventListener("beforeprint", prepareDocumentForPrint);
+      window.addEventListener("afterprint", restoreDocumentAfterPrint);
+
+      document.getElementById("btn-print-pdf").addEventListener("click", function() {
+        prepareDocumentForPrint();
+        try {
+          if (typeof window.print === "function") {
+            window.print();
+          } else {
+            throw new Error("window.print no disponible");
+          }
+        } catch (err) {
+          showNotification(
+            "Abre este archivo directamente en el navegador y utiliza Ctrl+P o Cmd+P",
+            7000
+          );
+        } finally {
+          setTimeout(restoreDocumentAfterPrint, 1200);
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
